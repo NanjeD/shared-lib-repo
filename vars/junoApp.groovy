@@ -2,6 +2,7 @@ def call(String repoUrl){
   pipeline {
        agent any
        tools {
+           maven 'maven'
        }
        stages {
            stage("Tools initialization") {
@@ -16,9 +17,9 @@ def call(String repoUrl){
                           url: "${repoUrl}"
                }
            }
-           stage('sub-job3'){
-				steps{
-				  echo 'action3'
+           stage("to-test-maven") {
+               steps {
+                   sh 'mvn -v'
                }
            }
        }
